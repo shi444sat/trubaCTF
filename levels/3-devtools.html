@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level 3: Developer Secrets | Codex Trail</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <style>.forbidden { background: #111; padding: 2rem; border-left: 4px solid var(--secondary); }</style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Level 3: Developer Secrets</h1>
+      <div class="progress-bar"><div class="progress-fill" style="width: 33.3%;"></div></div>
+    </header>
+    <div class="puzzle-card fade-in">
+       <h2>Access Denied</h2>
+       <p>Only developers are allowed past this point. Maybe they left a clue for themselves somewhere nearby? Inspect It.... </p>
+      <div class="forbidden">
+        <h2>403 Forbidden</h2>
+        <p>You don't have permission to view this resource.</p>
+      </div>
+      <form id="answer-form" class="answer-form">
+        <input type="password" id="answer" placeholder="Enter password..." required>
+        <button type="submit" class="btn btn-hover">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+   import { checkAnswer } from '../assets/js/validation.js';
+
+    const CURRENT_LEVEL_ID = 'level3';
+    const NEXT_LEVEL_URL = '4-caesar.html';
+    console.log("Password hint: The password is 'c0d3x'");
+
+    document.getElementById('answer-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitButton = e.target.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Checking...';
+      const isCorrect = await checkAnswer(CURRENT_LEVEL_ID, document.getElementById('answer').value);
+      if (isCorrect) {
+        e.target.closest('.puzzle-card').classList.add('success');
+        setTimeout(() => { window.location.href = NEXT_LEVEL_URL; }, 1000);
+      } else {
+        e.target.closest('.puzzle-card').classList.add('error-shake');
+        setTimeout(() => e.target.closest('.puzzle-card').classList.remove('error-shake'), 500);
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit';
+      }
+    });
+  </script>
+</body>
+</html>

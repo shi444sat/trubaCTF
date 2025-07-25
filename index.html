@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Codex Trail CTF</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <style>
+    :root {
+      --primary: #00bcd4;
+      --text: #f1f1f1;
+      --background: #0d1117;
+      --surface: #161b22;
+      --accent: #f39c12;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 700px;
+      padding: 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background-color: var(--surface);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 188, 212, 0.2);
+      animation: fadeIn 1.5s ease;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .start-btn , .telegram-btn{
+      display: inline-block;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      padding: 0.9rem 2rem;
+      color: var(--background);
+      background-color: var(--primary);
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+ 
+    
+    .telegram-btn {
+      background-color: #0088cc;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .telegram-btn:hover {
+      background-color: var(--accent);
+      transform: scale(1.05);
+      color: #000;
+    }
+    .start-btn:hover {
+      background-color: var(--accent);
+      transform: scale(1.05);
+      color: #000;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main class="hero">
+      <h1>The Codex Trail</h1>
+      <p>A cryptic path awaits those who dare to think beyond the obvious.</p>
+      <a href="levels/1-qr.html" class="start-btn">Begin the Journey</a>
+       <a href="https://t.me/+1YGrLqwGy6dhNzc1" target="_blank" class="telegram-btn">Join Discussion Group</a>
+    </main>
+    <footer>
+      Powered by Minds That Seek | Truba CTF © 2025
+    </footer>
+  </div>
+</body>
+</html>

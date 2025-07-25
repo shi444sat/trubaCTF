@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level 6: The Final Challenge | Codex Trail</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <style>.prime-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin: 2rem 0; } .prime-number { background: #111; padding: 1.5rem; text-align: center; font-size: 1.5rem; font-family: 'Courier Prime', monospace; border-radius: 4px; }</style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Level 6: The Final Challenge</h1>
+      <div class="progress-bar"><div class="progress-fill" style="width: 83.3%;"></div></div>
+    </header>
+    <div class="puzzle-card fade-in">
+      <h2>Prime Number Puzzle</h2>
+      <p>For the Final Lock: Multiply three numbers to unlock the truth. One number is already known: 3301. The remaining two numbers are hidden in the Level 2 image. Only the observant will see. <br>
+        Hint: Do R&D on Cicada 3301.</p>
+      <div class="prime-grid">
+        <div class="prime-number">?</div>
+        <div class="prime-number">?</div>
+        <div class="prime-number">3301</div>
+      </div>
+      <form id="answer-form" class="answer-form">
+        <input type="number" id="answer" placeholder="Enter the product..." required>
+        <button type="submit" class="btn btn-hover">Submit Final Answer</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { checkAnswer } from '../assets/js/validation.js';
+
+    const CURRENT_LEVEL_ID = 'level6';
+    const NEXT_LEVEL_URL = '../success.html';
+
+    document.getElementById('answer-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitButton = e.target.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Checking...';
+      const isCorrect = await checkAnswer(CURRENT_LEVEL_ID, document.getElementById('answer').value);
+      if (isCorrect) {
+        e.target.closest('.puzzle-card').classList.add('success');
+        setTimeout(() => { window.location.href = NEXT_LEVEL_URL; }, 1000);
+      } else {
+        e.target.closest('.puzzle-card').classList.add('error-shake');
+        setTimeout(() => e.target.closest('.puzzle-card').classList.remove('error-shake'), 500);
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Final Answer';
+      }
+    });
+  </script>
+</body>
+</html>
